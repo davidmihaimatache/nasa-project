@@ -7,6 +7,9 @@ async function mongoConnect() {
   await mongoose.connect(MONGO_URL);
   console.log("Awaited the mongoose connect");
 }
+async function mongoDisconnect() {
+  await mongoose.disconnect();
+}
 
 mongoose.connection.once("open", () => {
   console.log("MongoDB connection ready");
@@ -15,4 +18,4 @@ mongoose.connection.once("open", () => {
 mongoose.connection.on("error", (err) => {
   console.error(err);
 });
-module.exports = { mongoConnect };
+module.exports = { mongoConnect, mongoDisconnect };
